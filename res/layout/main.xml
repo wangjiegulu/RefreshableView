@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+        >
+    <com.wangjie.refreshableview.RefreshableView
+            xmlns:rv="http://schemas.android.com/apk/res/com.wangjie.refreshableview"
+            android:id="@+id/main_refresh_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            rv:interceptAllMoveEvents="false"
+            >
+        <com.wangjie.refreshableview.NestScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:fillViewport="true"
+                >
+
+            <TextView
+                    android:id="@+id/main_tv"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:textSize="18sp"
+                    android:text="Drop Down For Refresh\n\n\n\n\n\n\n\n\n\n\nDrop Down For Refresh\nDrop Down For Refresh\n\n\n\n\n\n\n\n\n\n\nDrop Down For Refresh\nDrop Down For Refresh\n\n\n\n\n\n\n\n\n\n\nDrop Down For Refresh\nDrop Down For Refresh\n\n\n\n\n\n\n\n\n\n\nDrop Down For Refresh"
+                    />
+
+        </com.wangjie.refreshableview.NestScrollView>
+    </com.wangjie.refreshableview.RefreshableView>
+
+</LinearLayout>
+

@@ -135,6 +135,7 @@ public class RefreshableView extends LinearLayout {
 //        refreshHeaderView = LayoutInflater.from(context).inflate(R.layout.refresh_head, null);
         if (null == refreshHeaderView) {
             Log.e(TAG, "refreshHeaderView is null!");
+            return;
         }
         this.addView(refreshHeaderView, 0);
 

@@ -206,7 +206,7 @@ public class RefreshableView extends LinearLayout {
             case MotionEvent.ACTION_DOWN:
                 downY = event.getY();
                 Log.d(TAG, "Down --> downY: " + downY);
-                getParent().requestDisallowInterceptTouchEvent(true); // 保证事件可往下传递
+                requestDisallowInterceptTouchEvent(true); // 保证事件可往下传递
                 break;
             case MotionEvent.ACTION_MOVE:
 

@@ -1,11 +1,15 @@
-package com.wangjie.refreshableview;
+package com.wangjie.sample;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import com.wangjie.refreshableview.R;
+import com.wangjie.refreshableview.RefreshableView;
+import com.wangjie.refreshableview.refreshablehelper.RefreshableHelper;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -21,7 +25,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.main);
         findViewById(R.id.main_tv).setOnClickListener(this);
         refreshableView = (RefreshableView) findViewById(R.id.main_refresh_view);
-        refreshableView.setRefreshableViewHelper(new RefreshableView.RefreshableViewHelper() {
+        refreshableView.setRefreshableHelper(new RefreshableHelper() {
 
             @Override
             public View onInitRefreshHeaderView() {
@@ -81,6 +85,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.main_tv:
                 Log.d(TAG, "content clicked");
+                startActivity(new Intent(this, RefreshableListActivity.class));
                 break;
         }
     }

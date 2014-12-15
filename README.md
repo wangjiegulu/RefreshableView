@@ -1,7 +1,7 @@
 RefreshableView
 ===============
 
-可下拉刷新的ViewGroup
+可下拉刷新的ViewGroup、ListView
 
 
 

@@ -11,8 +11,9 @@ RefreshableView
 <img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_d.png' 
 height='500px'/>
 
-### RefreshableView:
-## main_xml:
+RefreshableView:
+---------------------
+### main_xml:
       <com.wangjie.refreshableview.RefreshableView
                 xmlns:rv="http://schemas.android.com/apk/res/com.wangjie.refreshableview"
                 android:id="@+id/main_refresh_view"
@@ -37,7 +38,7 @@ height='500px'/>
 
 >注意：RefreshableView如果包含在ScrollView外面，需要设置属性“interceptAllMoveEvents”为false
 
-## MainActivity:
+### MainActivity:
         public class MainActivity extends Activity implements View.OnClickListener {
             private static final String TAG = MainActivity.class.getSimpleName();
         
@@ -117,13 +118,14 @@ height='500px'/>
             }
         }
 
-### RefreshableListView
+RefreshableListView
+---------------------
 <img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_e.png' height='500px'/>
 <img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_f.png' height='500px'/>
 <img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_g.png' height='500px'/>
 <img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_h.png' height='500px'/>
 
-## main.xml
+### main.xml
             <com.wangjie.refreshableview.RefreshableListView
                         android:id="@+id/refreshable_lv"
                         android:layout_width="match_parent"
@@ -131,7 +133,7 @@ height='500px'/>
                         android:cacheColorHint="@android:color/transparent"
                         />
 
-## RefreshableListActivity
+### RefreshableListActivity
             public class RefreshableListActivity extends Activity {
                 private static final String TAG = RefreshableListActivity.class.getSimpleName();
                 RefreshableListView lv;

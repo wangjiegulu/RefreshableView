@@ -35,6 +35,7 @@ height='500px'/>
             </com.wangjie.refreshableview.NestScrollView>
         </com.wangjie.refreshableview.RefreshableView>
 
+>注意：RefreshableView如果包含在ScrollView外面，需要设置属性“interceptAllMoveEvents”为false
 
 ## MainActivity:
         public class MainActivity extends Activity implements View.OnClickListener {

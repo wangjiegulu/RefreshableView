@@ -8,9 +8,10 @@ RefreshableView
 <img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_a.png' height='500px'/>
 <img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_b.png' height='500px'/>
 <img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_c.png' height='500px'/>
-<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_d.png' height='500px'/>
+<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_d.png' 
+height='500px'/>
 
-
+### RefreshableView:
 ## main_xml:
       <com.wangjie.refreshableview.RefreshableView
                 xmlns:rv="http://schemas.android.com/apk/res/com.wangjie.refreshableview"
@@ -115,5 +116,91 @@ RefreshableView
             }
         }
 
+### RefreshableListView
+<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_e.png' height='500px'/>
+<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_f.png' height='500px'/>
+<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_g.png' height='500px'/>
+<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_h.png' height='500px'/>
 
+## main.xml
+            <com.wangjie.refreshableview.RefreshableListView
+                        android:id="@+id/refreshable_lv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:cacheColorHint="@android:color/transparent"
+                        />
 
+## RefreshableListActivity
+            public class RefreshableListActivity extends Activity {
+                private static final String TAG = RefreshableListActivity.class.getSimpleName();
+                RefreshableListView lv;
+            
+                @Override
+                protected void onCreate(Bundle savedInstanceState) {
+                    super.onCreate(savedInstanceState);
+                    setContentView(R.layout.refreshable_list);
+                    lv = (RefreshableListView) findViewById(R.id.refreshable_lv);
+                    lv.setRefreshableHelper(new RefreshableHelper() {
+            
+                        @Override
+                        public View onInitRefreshHeaderView() {
+                            return LayoutInflater.from(RefreshableListActivity.this).inflate(R.layout.refresh_head, null);
+                        }
+            
+                        @Override
+                        public boolean onInitRefreshHeight(int originRefreshHeight) {
+                            lv.setRefreshNormalHeight(lv.getOriginRefreshHeight() / 3);
+                            lv.setRefreshingHeight(lv.getOriginRefreshHeight());
+                            lv.setRefreshArrivedStateHeight(lv.getOriginRefreshHeight());
+                            return false;
+                        }
+            
+                        @Override
+                        public void onRefreshStateChanged(View refreshView, int refreshState) {
+                            TextView tv = (TextView) refreshView.findViewById(R.id.refresh_head_tv);
+                            switch (refreshState) {
+                                case RefreshableView.STATE_REFRESH_NORMAL:
+                                    tv.setText("正常状态");
+                                    break;
+                                case RefreshableView.STATE_REFRESH_NOT_ARRIVED:
+                                    tv.setText("往下拉可以刷新");
+                                    break;
+                                case RefreshableView.STATE_REFRESH_ARRIVED:
+                                    tv.setText("放手可以刷新");
+                                    break;
+                                case RefreshableView.STATE_REFRESHING:
+                                    tv.setText("正在刷新");
+                                    new Thread(
+                                            new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    try {
+                                                        Thread.sleep(3000l);
+                                                        runOnUiThread(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                lv.onCompleteRefresh();
+                                                            }
+                                                        });
+                                                    } catch (InterruptedException e) {
+                                                        Log.e(TAG, "_", e);
+                                                    }
+                                                }
+                                            }
+                                    ).start();
+                                    break;
+            
+                            }
+                        }
+                    });
+            
+                    List<String> data = new ArrayList<String>();
+                    for (int i = 0; i < 30; i++) {
+                        data.add("item_" + i);
+                    }
+                    ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
+                    lv.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+            
+                }
+            }

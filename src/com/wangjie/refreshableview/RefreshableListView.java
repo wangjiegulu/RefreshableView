@@ -1,11 +1,5 @@
 package com.wangjie.refreshableview;
 
-/**
- * Author: wangjie
- * Email: tiantian.china.2@gmail.com
- * Date: 12/15/14.
- */
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -13,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
-import android.widget.AbsListView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.AnimatorListenerAdapter;
@@ -88,24 +82,34 @@ public class RefreshableListView extends ListView {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        Log.d(TAG, "[onSizeChanged]w: " + w + ", h: " + h);
+        Log.d(TAG, "[onSizeChanged]oldw: " + oldw + ", oldh: " + oldh);
+        Log.d(TAG, "[onSizeChanged]child counts: " + this.getChildCount());
 
+    }
+
+    @Override
+    public void setAdapter(ListAdapter adapter) {
+        if (null == refreshHeaderView) {
+            addHeaderView();
+        }
+        super.setAdapter(adapter);
+    }
+
+    private void addHeaderView() {
         if (null != refreshableHelper) {
             refreshHeaderView = refreshableHelper.onInitRefreshHeaderView();
         }
-//        refreshHeaderView = LayoutInflater.from(context).inflate(R.layout.refresh_head, null);
         if (null == refreshHeaderView) {
             Log.e(TAG, "refreshHeaderView is null!");
             return;
         }
         this.addHeaderView(refreshHeaderView);
         // 计算refreshHeadView尺寸
-        int width = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST);
+        int width = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
+        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
         refreshHeaderView.measure(width, expandSpec);
 
-        Log.d(TAG, "[onSizeChanged]w: " + w + ", h: " + h);
-        Log.d(TAG, "[onSizeChanged]oldw: " + oldw + ", oldh: " + oldh);
-        Log.d(TAG, "[onSizeChanged]child counts: " + this.getChildCount());
         originRefreshHeight = refreshHeaderView.getMeasuredHeight();
 
         boolean isUseDefault = true;
@@ -124,8 +128,6 @@ public class RefreshableListView extends ListView {
 
         // 初始化为正常状态
         setRefreshState(STATE_REFRESH_NORMAL);
-
-
     }
 
     @Override
@@ -242,7 +244,7 @@ public class RefreshableListView extends ListView {
         Log.d(TAG, "[changeViewHeight]change Height: " + height);
         ViewGroup.LayoutParams lp = view.getLayoutParams();
         if (null == lp) {
-            lp = new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
+            lp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
         }
         lp.height = height;
         view.setLayoutParams(lp);
@@ -305,4 +307,6 @@ public class RefreshableListView extends ListView {
     }
 
 }
+
+
 

@@ -116,6 +116,7 @@ public class RefreshableView extends LinearLayout {
             Log.e(TAG, "refreshHeaderView is null!");
             return;
         }
+        this.removeView(refreshHeaderView);
         this.addView(refreshHeaderView, 0);
 
         // 计算refreshHeadView尺寸
@@ -196,7 +197,7 @@ public class RefreshableView extends LinearLayout {
                 /**
                  * 修改拦截设置
                  * 如果是有效往下拖动事件，则事件需要在本ViewGroup中处理，所以需要拦截不往子控件传递，即不允许拦截设为false
-                 * 如果是有效往下拖动事件，则事件传递给子控件处理，所以不需要拦截，并往子控件传递，即不允许拦截设为true
+                 * 如果不是有效往下拖动事件，则事件传递给子控件处理，所以不需要拦截，并往子控件传递，即不允许拦截设为true
                  */
                 requestDisallowInterceptTouchEvent(!isDropDownValidate);
 

@@ -64,7 +64,7 @@ public class RefreshableListActivity extends Activity {
                                     @Override
                                     public void run() {
                                         try {
-                                            Thread.sleep(3000l);
+                                            Thread.sleep(1000l);
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {

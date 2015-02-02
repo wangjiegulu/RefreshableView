@@ -4,12 +4,8 @@ RefreshableView
 可下拉刷新的ViewGroup、ListView
 
 
-
-<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_a.png' height='500px'/>
-<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_b.png' height='500px'/>
-<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_c.png' height='500px'/>
-<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshable_d.png' 
-height='500px'/>
+<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshableview.gif' height='500px'/>
+<img src='https://raw.githubusercontent.com/wangjiegulu/RefreshableView/master/screenshot/refreshablelistview.gif' height='500px'/>
 
 RefreshableView:
 ---------------------
